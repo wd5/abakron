@@ -1,0 +1,9 @@
+*.py[co]
+
+# Project-specified files
+.env/
+settings_local.py
+abakron/media/*
+
+# IDE bullshit
+.idea
