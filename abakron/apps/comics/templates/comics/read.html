@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ obj.title }}{% endblock %}
+
+{% block content %}
+    <section>
+        <img src="{{ obj.image.url }}" alt="{{ obj.alt }}" title="{{ obj.title }}">
+    </section>
+{% endblock %}

@@ -7,14 +7,32 @@ from comics.models import Chapter, Comics
 def index(request):
     """Latest comics"""
 
-    raise NotImplementedError()
+    obj = Comics.objects.latest('created')
+
+    context = {
+        'obj': obj,
+    }
+
+    return render(request, 'comics/read.html', context)
 
 def chapter(request, chapter_slug):
     """Chapter cover"""
 
-    raise NotImplementedError()
+    obj = get_object_or_404(Chapter, slug=chapter_slug)
+
+    context = {
+        'obj': obj,
+    }
+
+    return render(request, 'comics/chapter.html', context)
 
 def read(request, chapter_slug, comics_id):
     """Comics view"""
 
-    raise NotImplementedError()
+    obj = get_object_or_404(Chapter, chapter__slug=chapter_slug, pk=comics_id)
+
+    context = {
+        'obj': obj,
+    }
+
+    return render(request, 'comics/read.html', context)

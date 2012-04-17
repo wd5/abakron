@@ -46,11 +46,11 @@
         </nav>
 
         <article>
-
+            {% block content %}{% endblock %}
         </article>
 
         <footer>
-
+            <p>«Абакрон» © {% now 'Y' %} Комикс: <a href="http://dvan.helloacy.ru">Иван «D.Van» Хорошев</a>; Сайт и поддержка: <a href="http://svartalf.info">SvartalF</a>.</p>
         </footer>
     </body>
 </html>
