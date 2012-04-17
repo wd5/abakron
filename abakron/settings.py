@@ -111,6 +111,7 @@ INSTALLED_APPS = (
 
     # Libraries
     'pytils',
+    'south',
 
     # Project applications
     'comics',
