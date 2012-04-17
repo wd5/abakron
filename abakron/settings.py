@@ -112,6 +112,7 @@ INSTALLED_APPS = (
     # Libraries
     'pytils',
     'south',
+    'less',
 
     # Project applications
     'comics',
@@ -146,6 +147,9 @@ LOGGING = {
         },
     }
 }
+
+# Less
+LESS_OUTPUT_DIR = 'css-compiled'
 
 try:
     from settings_local import *

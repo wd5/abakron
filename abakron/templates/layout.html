@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+<!DOCTYPE html>{% load less %}
 <html>
     <head>
         <meta charset="utf-8">
         <title>{% block title %}{% endblock %} / Абакрон</title>
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}{% less 'less/style.less' %}">
         {% block head %}{% endblock %}
     </head>
     <body>
