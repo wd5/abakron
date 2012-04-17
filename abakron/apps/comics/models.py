@@ -16,7 +16,7 @@ def chapter_cover_upload(instance, filename):
 class Chapter(models.Model):
 
     title = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True)
     cover = models.ImageField(upload_to=chapter_cover_upload, storage=OverwriteStorage())
 
     class Meta:
@@ -42,10 +42,11 @@ class Comics(models.Model):
     image = models.ImageField(upload_to=comics_upload, storage=OverwriteStorage())
     alt = models.CharField(max_length=255)
     created = models.DateTimeField()
-    position = models.PositiveIntegerField(default=0)
+    position = models.PositiveIntegerField(default=0, db_index=True)
 
     class Meta:
         db_table = 'comics_comics'
+        unique_together = (('chapter', 'position'),)
         verbose_name = u'comics'
         verbose_name_plural = u'comics'
 
