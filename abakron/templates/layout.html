@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock %} / Абакрон</title>
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <header>
+
+        </header>
+
+        <nav>
+
+            <ul id="navigation-main">
+                <li><a href="#">Link 1</a></li>
+                <li><a href="#">Link 2</a></li>
+                <li><a href="#">Link 3</a></li>
+                <li><a href="#">Link 4</a></li>
+            </ul>
+
+            <ul id="navigation-inner">
+                <li><a href="#">First</a></li>
+                <li><a href="#">Previous</a></li>
+                <li id="navigation-toc">
+                    <form action="." method="post">
+                        <select>
+                            <option value="">Chapter 1</option>
+                            <option value="">Chapter 2</option>
+                            <option value="" selected="selected">Chapter 3</option>
+                            <option value="">Chapter 4</option>
+                        </select>
+                        <select>
+                            <option value="">Comics 1</option>
+                            <option value="" selected="selected">Comics 2</option>
+                            <option value="">Comics 3</option>
+                            <option value="">Comics 4</option>
+                            <option value="">Comics 5</option>
+                        </select>
+                    </form>
+                </li>
+                <li><a href="#">Next</a></li>
+                <li><a href="#">Last</a></li>
+            </ul>
+
+        </nav>
+
+        <article>
+
+        </article>
+
+        <footer>
+
+        </footer>
+    </body>
+</html>
