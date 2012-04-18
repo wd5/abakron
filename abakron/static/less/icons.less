@@ -1,9 +1,11 @@
 @import 'mixins.less';
 
-i {}
+i {
+    display: inline-block;
+    .ie7-restore-right-whitespace();
+}
 
 i.icon-twitter {
-    display: block;
     width: 27px;
     height: 27px;
     margin-top: 6px;
@@ -11,7 +13,6 @@ i.icon-twitter {
     background: url(/static/images/icons/icon-twitter.png) center;
 }
 i.icon-rss {
-    display: block;
     width: 27px;
     height: 27px;
     margin-top: 6px;
@@ -19,25 +20,21 @@ i.icon-rss {
     background: url(/static/images/icons/icon-rss.png) center;
 }
 i.icon-navigation-first {
-    display: inline-block;
     width: 50px;
     height: 50px;
     background: url(/static/images/icons/icon-navigation-inner-first.png) center;
 }
 i.icon-navigation-left {
-    display: inline-block;
     width: 50px;
     height: 50px;
     background: url(/static/images/icons/icon-navigation-inner-left.png) center;
 }
 i.icon-navigation-right {
-    display: inline-block;
     width: 50px;
     height: 50px;
     background: url(/static/images/icons/icon-navigation-inner-right.png) center;
 }
 i.icon-navigation-last {
-    display: inline-block;
     width: 50px;
     height: 50px;
     background: url(/static/images/icons/icon-navigation-inner-last.png) center;
