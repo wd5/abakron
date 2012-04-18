@@ -1,10 +1,15 @@
 @import 'variables.less';
+@import 'mixins.less';
 
 body {
     margin: 0;
 }
 
-header, nav, article, footer {
+#container {
     width: @containerWidth;
+    margin-top: 0;
+    margin-bottom: 0;
+    .box-shadow(0 -2px 15px #333333);
+    padding: 0 5px 0 5px;
     .center-block();
 }

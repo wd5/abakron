@@ -7,51 +7,65 @@
         {% block head %}{% endblock %}
     </head>
     <body>
-        <header>
 
-        </header>
+        <div id="container">
 
-        <nav>
+            <header>
 
-            <ul id="navigation-main">
-                <li><a href="#">Link 1</a></li>
-                <li class="pull-right"><a href="#">Link 2</a></li>
-                <li class="pull-right"><a href="#">Link 3</a></li>
-                <li class="pull-right"><a href="#">Link 4</a></li>
-            </ul>
+                <nav>
+    
+                    <ul id="navigation-main">
+                        <li><a href="#">Читать комикс!</a></li>
+                        <li><a href="#">Бонусы</a></li>
+                        <li><a href="#">Ваши вопросы</a></li>
+                        <li><a href="#">Пожертвования</a></li>
+                    </ul>
+    
+                    <ul class="navigation-inner">
+                        <li><a href="#"><i class="icon-navigation-first"></i></a></li>
+                        <li><a href="#"><i class="icon-navigation-left"></i></a></li>
+                        <li class="navigation-toc">
+                            <form action="." method="post">
+                                <div class="navigation-toc-chapter">
+                                    <select>
+                                        <option value="">Chapter 1</option>
+                                        <option value="">Chapter 2</option>
+                                        <option value="" selected="selected">Chapter 3</option>
+                                        <option value="">Chapter 4</option>
+                                    </select>
+                                </div>
+                                <div class="navigation-toc-episode">
+                                    <select>
+                                        <option value="">Comics 1</option>
+                                        <option value="" selected="selected">Comics 2</option>
+                                        <option value="">Comics 3</option>
+                                        <option value="">Comics 4</option>
+                                        <option value="">Comics 5</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </li>
+                        <li><a href="#"><i class="icon-navigation-right"></i></a></li>
+                        <li><a href="#"><i class="icon-navigation-last"></i></a></li>
+                    </ul>
 
-            <ul id="navigation-inner">
-                <li><a href="#">First</a></li>
-                <li><a href="#">Previous</a></li>
-                <li id="navigation-toc">
-                    <form action="." method="post">
-                        <select>
-                            <option value="">Chapter 1</option>
-                            <option value="">Chapter 2</option>
-                            <option value="" selected="selected">Chapter 3</option>
-                            <option value="">Chapter 4</option>
-                        </select>
-                        <select>
-                            <option value="">Comics 1</option>
-                            <option value="" selected="selected">Comics 2</option>
-                            <option value="">Comics 3</option>
-                            <option value="">Comics 4</option>
-                            <option value="">Comics 5</option>
-                        </select>
-                    </form>
-                </li>
-                <li><a href="#">Next</a></li>
-                <li><a href="#">Last</a></li>
-            </ul>
+                    <ul id="navigation-resources">
+                        <li><a href="#"><i class="icon-twitter"></i></a></li>
+                        <li><a href="#"><i class="icon-rss"></i></a></li>
+                    </ul>
+                    
+                </nav>
+            </header>
 
-        </nav>
+            <article>
+                {% block content %}{% endblock %}
+            </article>
 
-        <article>
-            {% block content %}{% endblock %}
-        </article>
+            <footer>
+                <p>«Абакрон» © {% now 'Y' %} Комикс: <a href="http://dvan.helloacy.ru">Иван «D.Van» Хорошев</a>; Сайт и поддержка: <a href="http://svartalf.info">SvartalF</a>.</p>
+            </footer>
 
-        <footer>
-            <p>«Абакрон» © {% now 'Y' %} Комикс: <a href="http://dvan.helloacy.ru">Иван «D.Van» Хорошев</a>; Сайт и поддержка: <a href="http://svartalf.info">SvartalF</a>.</p>
-        </footer>
+        </div>
+
     </body>
 </html>
