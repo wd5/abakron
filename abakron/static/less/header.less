@@ -1,7 +1,7 @@
 @import 'variables.less';
 
 header {
-    height: 200px;
+    height: 124px+39px;
     position: relative;
     background: #0D0906 url(/static/images/header.png) no-repeat center top;
 }
@@ -15,7 +15,7 @@ header {
     width: 730px;
     background: url(/static/images/navigation-main-background.png) repeat-x left top #643C0B;
     position: absolute;
-    bottom: 37px;
+    bottom: 0;
 
     li {
         float: left;
@@ -40,39 +40,6 @@ header {
             }
         }
 
-    }
-
-}
-
-.navigation-inner {
-    background: #ffffff url(/static/images/navigation-inner-background.png) top center repeat-x;
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    bottom: 0;
-    list-style: none;
-    width: 730px;
-    height: 37px;
-
-    li {
-        float: left;
-        margin-top: 7px;
-
-        &:first-child {
-            margin-left: 80px;
-        }
-
-        a {
-        }
-    }
-
-    div {
-        display: inline-block;
-        width: 180px;
-        height: 32px;
-        padding-top: 16px;
-        text-align: center;
-        background: url(/static/images/navigation-inner-toc-background.png);
     }
 
 }
