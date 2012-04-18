@@ -1,37 +1,12 @@
 {% extends 'layout.html' %}
 
+{% load comics_tags %}
+
 {% block title %}{{ obj.title }}{% endblock %}
 
 {% block content %}
 <section class="comics">
-
-    <ul class="navigation-inner">
-        <li><a href="#"><i class="icon-navigation-first"></i></a></li>
-        <li><a href="#"><i class="icon-navigation-left"></i></a></li>
-        <li class="navigation-toc">
-            <form action="." method="post">
-                <div class="navigation-toc-chapter">
-                    <select>
-                        <option value="">Chapter 1</option>
-                        <option value="">Chapter 2</option>
-                        <option value="" selected="selected">Chapter 3</option>
-                        <option value="">Chapter 4</option>
-                    </select>
-                </div>
-                <div class="navigation-toc-episode">
-                    <select>
-                        <option value="">Comics 1</option>
-                        <option value="" selected="selected">Comics 2</option>
-                        <option value="">Comics 3</option>
-                        <option value="">Comics 4</option>
-                        <option value="">Comics 5</option>
-                    </select>
-                </div>
-            </form>
-        </li>
-        <li><a href="#"><i class="icon-navigation-right"></i></a></li>
-        <li><a href="#"><i class="icon-navigation-last"></i></a></li>
-    </ul>
+    {% comics_navigation obj %}
 
     <div class="image">
         <img src="{{ obj.image.url }}" alt="{{ obj.alt }}" title="{{ obj.title }}">

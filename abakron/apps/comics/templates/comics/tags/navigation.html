@@ -1,0 +1,24 @@
+<ul class="navigation-inner{% if classes %} {{ classes }}{% endif %}">
+    <li><a href="#"><i class="icon-navigation-first"></i></a></li>
+    <li><a href="#"><i class="icon-navigation-left"></i></a></li>
+    <li class="navigation-toc">
+        <form action="." method="post">
+            <div class="navigation-toc-chapter">
+                <select name="chapter">
+                    {% for chapter in chapters %}
+                        <option value="{% url comics.chapters.read chapter.slug %}"{% if chapter == current_chapter %}selected="selected"{% endif %}>{{ chapter.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="navigation-toc-episode">
+                <select name="comics">
+                    {% for entry in comics %}
+                        <option value="{% url comics.read entry.chapter.slug entry.position %}"{% if entry == current_comics %} selected="selected"{% endif %}>{{ entry.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </form>
+    </li>
+    <li><a href="#"><i class="icon-navigation-right"></i></a></li>
+    <li><a href="#"><i class="icon-navigation-last"></i></a></li>
+</ul>

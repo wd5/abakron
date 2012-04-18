@@ -27,6 +27,7 @@ class Chapter(models.Model):
     def __unicode__(self):
         return self.title
 
+
 def comics_upload(instance, filename):
     return 'comics/%(slug)s/%(position)03d%(ext)s' % {
         'slug': instance.chapter.slug,

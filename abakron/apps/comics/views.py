@@ -26,10 +26,10 @@ def chapter(request, chapter_slug):
 
     return render(request, 'comics/chapter.html', context)
 
-def read(request, chapter_slug, comics_id):
+def read(request, chapter_slug, comics_position):
     """Comics view"""
 
-    obj = get_object_or_404(Chapter, chapter__slug=chapter_slug, pk=comics_id)
+    obj = get_object_or_404(Chapter, chapter__slug=chapter_slug, position=comics_position)
 
     context = {
         'obj': obj,
