@@ -167,7 +167,7 @@ LOGGING = {
 }
 
 # Less
-LESS_OUTPUT_DIR = 'css-compiled'
+LESS_OUTPUT_DIR = 'css'
 
 try:
     from settings_local import *

@@ -4,7 +4,7 @@
 .env/
 settings_local.py
 abakron/media/*
-abakron/static/css-compiled/*
+abakron/static/css/*
 
 # IDE bullshit
 .idea
