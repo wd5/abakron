@@ -3,6 +3,7 @@
 from django import template
 
 from comics.models import Chapter, Comics
+from django.core.urlresolvers import reverse
 
 register = template.Library()
 
@@ -15,23 +16,68 @@ def comics_navigation(obj, classes=None):
         classes: additional css classes for navigation container
     """
 
+    left = right = last = None
+
+    first = Chapter.objects.all().order_by('pk')[0]
+    last = Comics.objects.all().select_related('chapter').order_by('-pk')[0]
+    first = reverse('comics.chapters.read', args=(first.slug,))
+
     if isinstance(obj, Comics):
         current_comics = obj
         current_chapter = obj.chapter
         comics = list(obj.chapter.comics.all().order_by('position'))
+
+        # Left position
+        if obj.position == 1:
+            left = reverse('comics.chapters.read', args=(obj.chapter.slug,))
+        else:
+            left_comics_id = [x for x in comics if x.pk < obj.pk][-1].pk
+            left = reverse('comics.read', args=(obj.chapter.slug, left_comics_id))
+
+        # Right position
+        if obj.position == len(comics):
+            # Latest in chapter
+            try:
+                right = Chapter.objects.filter(pk__gt=obj.chapter_id).order_by('pk').values_list('pk', flat=True)[0]
+                right = reverse('comics.chapters.read', args=(right.pk,))
+            except IndexError:
+                right = None
+        else:
+            try:
+                right_comics_id = [x for x in comics if x.pk > obj.pk][0].pk
+                right = reverse('comics.read', args=(obj.chapter.slug, right_comics_id,))
+            except IndexError:
+                right = None
+
+        # If we are on the latest comics
+        if obj != last:
+            last = reverse('comics.read', args=(last.chapter.slug, last.pk))
+        else:
+            last = None
+
     else:
         current_comics = None
         current_chapter = obj
-        comics = obj.comics.all().order_by('position')
+        comics = list(obj.comics.all().order_by('position'))
+
+        try:
+            left_chapter = Chapter.objects.filter(pk__lt=obj.pk).order_by('-pk')[0]
+            left = reverse('comics.read', args=(Comics.objects.filter(chapter=left_chapter).order_by('-position').values_list('pk', flat=True)[0]))
+        except IndexError:
+            left = None
+            first = None # There is no any chapters before this
+
+        right = reverse('comics.read', args=(obj.slug, comics[0].pk))
+        last = reverse('comics.read', args=(last.chapter.slug, last.pk))
 
     return {
         'current_comics': current_comics, # current comics if viewed
         'current_chapter': current_chapter, # current chapter cover
         'chapters': Chapter.objects.all().order_by('pk'),
         'comics': comics,
-        'first': None,
-        'left': None,
-        'right': None,
-        'last': None,
+        'first': first,
+        'left': left,
+        'right': right,
+        'last': last,
         'classes': classes,
     }

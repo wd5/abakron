@@ -1,6 +1,6 @@
 <ul class="navigation-inner{% if classes %} {{ classes }}{% endif %}">
-    <li><a href="#"><i class="icon-navigation-first"></i></a></li>
-    <li><a href="#"><i class="icon-navigation-left"></i></a></li>
+    <li>{% if first %}<a href="{{ first }}">{% endif %}<i class="icon-navigation-first"></i>{% if first %}</a>{% endif %}</li>
+    <li>{% if left %}<a href="{{ left }}">{% endif %}<i class="icon-navigation-left"></i>{% if left %}</a>{% endif %}</li>
     <li class="navigation-toc">
         <form action="." method="post">
             <div class="navigation-toc-chapter">
@@ -19,6 +19,6 @@
             </div>
         </form>
     </li>
-    <li><a href="#"><i class="icon-navigation-right"></i></a></li>
-    <li><a href="#"><i class="icon-navigation-last"></i></a></li>
+    <li>{% if right %}<a href="{{ right }}">{% endif %}<i class="icon-navigation-right"></i>{% if right %}</a>{% endif %}</li>
+    <li>{% if last %}<a href="{{ last }}">{% endif %}<i class="icon-navigation-last"></i>{% if last %}</a>{% endif %}</li>
 </ul>

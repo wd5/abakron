@@ -29,7 +29,7 @@ def chapter(request, chapter_slug):
 def read(request, chapter_slug, comics_position):
     """Comics view"""
 
-    obj = get_object_or_404(Chapter, chapter__slug=chapter_slug, position=comics_position)
+    obj = get_object_or_404(Comics, chapter__slug=chapter_slug, position=comics_position)
 
     context = {
         'obj': obj,
