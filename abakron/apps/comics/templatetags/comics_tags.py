@@ -69,9 +69,9 @@ def comics_navigation(obj, classes=None):
 
         try:
             right = reverse('comics.read', args=(obj.slug, comics[0].position))
+            last = reverse('comics.read', args=(last.chapter.slug, last.position))
         except IndexError:
-            right = None
-        last = reverse('comics.read', args=(last.chapter.slug, last.position))
+            right = last = None
 
     return {
         'current_comics': current_comics, # current comics if viewed
