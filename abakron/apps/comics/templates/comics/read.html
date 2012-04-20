@@ -6,11 +6,14 @@
 
 {% block content %}
 <section class="comics">
+
     {% comics_navigation obj %}
 
     <div class="image">
         <img src="{{ obj.image.url }}" alt="{{ obj.alt }}" title="{{ obj.title }}">
     </div>
+
+    {% comics_navigation obj 'additional' %}
 
 </section>
 {% endblock %}
