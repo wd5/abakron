@@ -67,7 +67,10 @@ def comics_navigation(obj, classes=None):
             left = None
             first = None # There is no any chapters before this
 
-        right = reverse('comics.read', args=(obj.slug, comics[0].position))
+        try:
+            right = reverse('comics.read', args=(obj.slug, comics[0].position))
+        except IndexError:
+            right = None
         last = reverse('comics.read', args=(last.chapter.slug, last.position))
 
     return {
