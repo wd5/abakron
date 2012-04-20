@@ -31,27 +31,27 @@ def comics_navigation(obj, classes=None):
         if obj.position == 1:
             left = reverse('comics.chapters.read', args=(obj.chapter.slug,))
         else:
-            left_comics_id = [x for x in comics if x.pk < obj.pk][-1].pk
+            left_comics_id = [x for x in comics if x.pk < obj.pk][-1].position
             left = reverse('comics.read', args=(obj.chapter.slug, left_comics_id))
 
         # Right position
         if obj.position == len(comics):
             # Latest in chapter
             try:
-                right = Chapter.objects.filter(pk__gt=obj.chapter_id).order_by('pk').values_list('pk', flat=True)[0]
-                right = reverse('comics.chapters.read', args=(right.pk,))
+                right = Chapter.objects.filter(pk__gt=obj.chapter_id).order_by('pk')[0]
+                right = reverse('comics.chapters.read', args=(right.slug,))
             except IndexError:
                 right = None
         else:
             try:
-                right_comics_id = [x for x in comics if x.pk > obj.pk][0].pk
+                right_comics_id = [x for x in comics if x.pk > obj.pk][0].position
                 right = reverse('comics.read', args=(obj.chapter.slug, right_comics_id,))
             except IndexError:
                 right = None
 
         # If we are on the latest comics
         if obj != last:
-            last = reverse('comics.read', args=(last.chapter.slug, last.pk))
+            last = reverse('comics.read', args=(last.chapter.slug, last.position))
         else:
             last = None
 
@@ -62,13 +62,13 @@ def comics_navigation(obj, classes=None):
 
         try:
             left_chapter = Chapter.objects.filter(pk__lt=obj.pk).order_by('-pk')[0]
-            left = reverse('comics.read', args=(Comics.objects.filter(chapter=left_chapter).order_by('-position').values_list('pk', flat=True)[0]))
+            left = reverse('comics.read', args=(left_chapter.slug, left_chapter.comics.order_by('-position').values_list('position', flat=True)[0]))
         except IndexError:
             left = None
             first = None # There is no any chapters before this
 
-        right = reverse('comics.read', args=(obj.slug, comics[0].pk))
-        last = reverse('comics.read', args=(last.chapter.slug, last.pk))
+        right = reverse('comics.read', args=(obj.slug, comics[0].position))
+        last = reverse('comics.read', args=(last.chapter.slug, last.position))
 
     return {
         'current_comics': current_comics, # current comics if viewed
