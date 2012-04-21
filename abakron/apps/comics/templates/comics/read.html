@@ -1,10 +1,11 @@
 {% extends 'layout.html' %}
 
-{% load comics_tags %}
+{% load comics_tags markup %}
 
 {% block title %}{{ obj.title }}{% endblock %}
 
 {% block content %}
+
 <section class="comics">
 
     {% comics_navigation obj %}
@@ -16,4 +17,13 @@
     {% comics_navigation obj 'additional' %}
 
 </section>
+
+{% if post %}
+    <section class="blog latest">
+        <h2><a href="#">{{ post.title }}</a></h2>
+        <div class="content">{{ post.content|markdown }}</div>
+        <div class="comments-count"><a href="#">16 комментариев</a></div>
+    </section>
+{% endif %}
+
 {% endblock %}

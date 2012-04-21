@@ -1,0 +1,54 @@
+section.blog {
+
+    .content a {
+        color: #66cccc;
+    }
+
+}
+
+section.blog.latest {
+    position: relative;
+    background-color: #836141;
+    padding: 30px;
+
+    h2 {
+        margin-top: 0;
+
+        a {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffff99;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .content {
+        color: #f5dcB8;
+        padding-bottom: 15px;
+        margin-left: 10px;
+        border-bottom: 1px #9c7f53 solid;
+    }
+
+    .comments-count {
+        position: absolute;
+        top: 22px;
+        right: 0;
+        padding: 9px 18px 10px 45px;
+        font-weight: bold;
+        background: url(/static/images/comments-count-background.png) no-repeat right center;
+
+        a {
+            color: #ffff99;
+            text-decoration: none;
+
+            &:hover {
+                color: #ffffff;
+            }
+        }
+    }
+
+}

@@ -3,14 +3,14 @@
 from django.shortcuts import render, get_object_or_404
 
 from comics.models import Chapter, Comics
+from blogs.models import Post
 
 def index(request):
     """Latest comics"""
 
-    obj = Comics.objects.latest('created')
-
     context = {
-        'obj': obj,
+        'obj': Comics.objects.latest('created'),
+        'post': Post.objects.latest('created'),
     }
 
     return render(request, 'comics/read.html', context)
@@ -18,10 +18,9 @@ def index(request):
 def chapter(request, chapter_slug):
     """Chapter cover"""
 
-    obj = get_object_or_404(Chapter, slug=chapter_slug)
-
     context = {
-        'obj': obj,
+        'obj': get_object_or_404(Chapter, slug=chapter_slug),
+        'post': Post.objects.latest('created'),
     }
 
     return render(request, 'comics/chapter.html', context)
@@ -29,10 +28,9 @@ def chapter(request, chapter_slug):
 def read(request, chapter_slug, comics_position):
     """Comics view"""
 
-    obj = get_object_or_404(Comics, chapter__slug=chapter_slug, position=comics_position)
-
     context = {
-        'obj': obj,
+        'obj': get_object_or_404(Comics, chapter__slug=chapter_slug, position=comics_position),
+        'post': Post.objects.latest('created'),
     }
 
     return render(request, 'comics/read.html', context)
