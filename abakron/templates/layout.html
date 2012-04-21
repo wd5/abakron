@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>{% block title %}{% endblock %} / Абакрон</title>
         <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}{% less 'less/style.less' %}">
+        {% static_domains_dns_prefetch %}
         <script type="text/javascript" src="{% static 'js/libs/modernizr.js' %}"></script>
         <script type="text/javascript">
             Modernizr.load([

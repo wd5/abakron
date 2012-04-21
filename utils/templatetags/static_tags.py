@@ -42,3 +42,9 @@ def static(parser, token):
     _, filename = token.split_contents()
 
     return StaticFileNode(filename.strip('"').strip('\''))
+
+@register.simple_tag
+def static_domains_dns_prefetch():
+    """HTML with a DNS prefetching instructions for all of the static domains"""
+
+    return ''.join(['<link rel="dns-prefetch" href="%s">' % x for x in settings.STATIC_DOMAINS])
