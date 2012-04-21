@@ -8,9 +8,14 @@ from blogs.models import Post
 def index(request):
     """Latest comics"""
 
+    try:
+        post = Post.objects.latest('created')
+    except Post.DoesNotExist:
+        post = None
+
     context = {
         'obj': Comics.objects.latest('created'),
-        'post': Post.objects.latest('created'),
+        'post': post,
     }
 
     return render(request, 'comics/read.html', context)
@@ -18,9 +23,14 @@ def index(request):
 def chapter(request, chapter_slug):
     """Chapter cover"""
 
+    try:
+        post = Post.objects.latest('created')
+    except Post.DoesNotExist:
+        post = None
+
     context = {
         'obj': get_object_or_404(Chapter, slug=chapter_slug),
-        'post': Post.objects.latest('created'),
+        'post': post,
     }
 
     return render(request, 'comics/chapter.html', context)
@@ -28,9 +38,14 @@ def chapter(request, chapter_slug):
 def read(request, chapter_slug, comics_position):
     """Comics view"""
 
+    try:
+        post = Post.objects.latest('created')
+    except Post.DoesNotExist:
+        post = None
+
     context = {
         'obj': get_object_or_404(Comics, chapter__slug=chapter_slug, position=comics_position),
-        'post': Post.objects.latest('created'),
+        'post': post,
     }
 
     return render(request, 'comics/read.html', context)
