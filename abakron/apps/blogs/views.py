@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import datetime
+
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 
@@ -23,6 +25,9 @@ def index(request, year=None, month=None):
 
     context = {
         'posts': objects,
+        'date': datetime.date(int(year), int(month), 1) if year and month else None,
+        'year': year,
+        'month': month,
     }
 
     return render(request, 'blogs/index.html', context)
