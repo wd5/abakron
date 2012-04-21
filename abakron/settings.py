@@ -177,10 +177,6 @@ JSROUTES_EXCLUDE_PATTERNS = (
     r'\^/api/urls/'
 )
 
-# Templates for javascript rendering
-JS_TEMPLATES = (
-    'comics/js/navigation_option.html',
-)
 
 try:
     from settings_local import *
