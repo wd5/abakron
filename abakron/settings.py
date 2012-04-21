@@ -113,6 +113,8 @@ INSTALLED_APPS = (
     'pytils',
     'south',
     'less',
+    'djangorestframework',
+    'jsroutes',
 
     # Project applications
     'comics',
@@ -168,6 +170,17 @@ LOGGING = {
 
 # Less
 LESS_OUTPUT_DIR = 'css'
+
+# Ignore some urls in jsroutes app
+JSROUTES_EXCLUDE_PATTERNS = (
+    r'\^/admin(.*)',
+    r'\^/api/urls/'
+)
+
+# Templates for javascript rendering
+JS_TEMPLATES = (
+    'comics/js/navigation_option.html',
+)
 
 try:
     from settings_local import *

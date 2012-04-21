@@ -1,9 +1,21 @@
-<!DOCTYPE html>{% load less %}
+<!DOCTYPE html>{% load less static %}
 <html>
     <head>
         <meta charset="utf-8">
         <title>{% block title %}{% endblock %} / Абакрон</title>
         <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}{% less 'less/style.less' %}">
+        <script type="text/javascript" src="{% static 'js/libs/modernizr.js' %}"></script>
+        <script type="text/javascript">
+            Modernizr.load([
+                '{% url jsroutes %}',
+                '{% static 'js/libs/jquery.1.7.2.js' %}',
+                '{% static 'js/libs/spine/spine.js' %}',
+                '{% static 'js/libs/spine/relation.js' %}',
+                '{% static 'js/libs/spine/ajax.js' %}',
+                '{% static 'js/models.js' %}',
+                '{% static 'js/controllers.js' %}',
+            ]);
+        </script>
         {% block head %}{% endblock %}
     </head>
     <body>
