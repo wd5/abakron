@@ -3,6 +3,8 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
+from comics.feeds import AggregatedFeed
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -10,6 +12,7 @@ urlpatterns = patterns('',
 
     (r'^blog/', include('blogs.urls')),
 
+    (r'^feed/$', AggregatedFeed()),
     (r'^api/urls/', include('jsroutes.urls')),
     (r'^api/comics/', include('comics.api')),
 
