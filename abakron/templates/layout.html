@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>{% block title %}{% endblock %} / Абакрон</title>
+        <link href="{% url feed %}" rel="alternate" type="application/rss+xml">
         <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}{% less 'less/style.less' %}">
         {% static_domains_dns_prefetch %}
         <script type="text/javascript" src="{% static 'js/libs/modernizr.js' %}"></script>
@@ -35,7 +36,7 @@
                     </ul>
 
                     <ul id="navigation-resources">
-                        <li><a href="#"><i class="icon-rss"></i></a></li>
+                        <li><a href="{% url feed %}"><i class="icon-rss"></i></a></li>
                         <li><a href="#"><i class="icon-twitter"></i></a></li>
                     </ul>
                     
