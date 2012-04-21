@@ -9,7 +9,7 @@ def index(request):
     """Latest comics"""
 
     try:
-        post = Post.objects.latest('created')
+        post = Post.objects.filter(visible=True).latest('created')
     except Post.DoesNotExist:
         post = None
 
@@ -24,7 +24,7 @@ def chapter(request, chapter_slug):
     """Chapter cover"""
 
     try:
-        post = Post.objects.latest('created')
+        post = Post.objects.filter(visible=True).latest('created')
     except Post.DoesNotExist:
         post = None
 
@@ -39,7 +39,7 @@ def read(request, chapter_slug, comics_position):
     """Comics view"""
 
     try:
-        post = Post.objects.latest('created')
+        post = Post.objects.filter(visible=True).latest('created')
     except Post.DoesNotExist:
         post = None
 

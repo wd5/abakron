@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% load markup %}
+
+{% block content %}
+<section class="blog index">
+    <ul>
+        {% for post in posts.object_list %}
+            <li>
+                <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+                <div class="content">{{ post.content|markdown }}</div>
+                <div class="comments-count"><a href="#">16 комментариев</a></div>
+            </li>
+        {% endfor %}
+    </ul>
+
+    {% if posts.has_previous or posts.has_next %}
+        <ul class="pagination">
+            {% if posts.has_previous %}
+            <li class="previous">
+                <a href="#">&larr; Старые</a>
+            </li>
+            {% endif %}
+            {% if posts.has_next %}
+            <li class="next">
+                <a href="#">Новые &rarr;</a>
+            </li>
+            {% endif %}
+        </ul>
+    {% endif %}
+</section>
+{% endblock %}

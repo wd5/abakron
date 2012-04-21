@@ -28,6 +28,9 @@ class Chapter(models.Model):
     def __unicode__(self):
         return self.title
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('comics.chapters.read', (self.slug,), {})
 
 def comics_upload(instance, filename):
     return 'comics/%(slug)s/%(position)03d%(ext)s' % {
@@ -54,3 +57,7 @@ class Comics(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('comics.read', (self.chapter.slug, self.position), {})

@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% load markup %}
+
+{% block title %}{{ post.title }} / Блог / {{ block.super }}{% endblock %}
+
+{% block content %}
+<section class="blog read">
+    <h1>{{ post.title }}</h1>
+    <div class="content">{{ post.content|markdown }}</div>
+</section>
+{% endblock %}
