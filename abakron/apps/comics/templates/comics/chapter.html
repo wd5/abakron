@@ -10,7 +10,7 @@
     {% comics_navigation obj %}
 
     <div class="image">
-        <img src="{{ obj.cover.url }}" alt="{{ obj.title }}" title="{{ obj.title }}">
+        <img src="{{ obj.cover.url }}" alt="{{ obj.title }}" title="{{ obj.title }}" style="width:{{ obj.cover.width }}px;height:{{ obj.cover.height }}px;">
     </div>
 
     {% comics_navigation obj 'additional' %}
