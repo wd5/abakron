@@ -63,6 +63,8 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
 
+STATIC_DOMAINS = ()
+
 # Additional locations of static files
 STATICFILES_DIRS = ()
 
@@ -115,6 +117,7 @@ INSTALLED_APPS = (
     'less',
     'djangorestframework',
     'jsroutes',
+    'utils',
 
     # Project applications
     'comics',
