@@ -18,6 +18,7 @@ class Chapter(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=255, unique=True)
     cover = models.ImageField(upload_to=chapter_cover_upload, storage=OverwriteStorage())
+    created = models.DateTimeField()
 
     class Meta:
         db_table = 'comics_chapters'

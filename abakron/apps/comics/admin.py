@@ -11,6 +11,12 @@ from comics.forms import ComicsAdminForm
 class ChapterAdmin(admin.ModelAdmin):
     list_display = ('title', lambda x: x.comics.all().count())
 
+    def save_model(self, request, obj, form, change):
+        if not change:
+            obj.created = datetime.datetime.now()
+
+        obj.save()
+
 admin.site.register(Chapter, ChapterAdmin)
 
 
@@ -24,9 +30,7 @@ class ComicsAdmin(admin.ModelAdmin):
         if not change:
             obj.created = datetime.datetime.now()
 
-        obj.slug = slugify(obj.title)
         obj.position = Comics.objects.filter(chapter=obj.chapter, created__lt=obj.created).count()+1
-
         obj.save()
 
 admin.site.register(Comics, ComicsAdmin)
