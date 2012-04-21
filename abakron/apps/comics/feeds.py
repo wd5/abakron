@@ -10,13 +10,16 @@ from comics.models import Chapter, Comics
 from blogs.models import Post
 
 class AggregatedFeed(Feed):
-    title = u''
-    link = u''
+    title = u'Абакрон'
     description = u''
 
     def __init__(self):
         self._site = Site.objects.get_current()
         super(AggregatedFeed, self).__init__()
+
+    @property
+    def link(self):
+        return 'http://%s' % self._site.domain
 
     def items(self):
         chapters = list(Chapter.objects.all().order_by('-created')[:10])
@@ -27,6 +30,9 @@ class AggregatedFeed(Feed):
 
     def item_title(self, item):
         return item.title
+
+    def item_pubdate(self, item):
+        return item.created
 
     def item_description(self, item):
         if isinstance(item, Chapter):
