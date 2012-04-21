@@ -20,7 +20,7 @@
 
 {% if post %}
     <section class="blog latest">
-        <h2><a href="#">{{ post.title }}</a></h2>
+        <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
         <div class="content">{{ post.content|markdown }}</div>
         <div class="comments-count"><a href="#">16 комментариев</a></div>
     </section>
