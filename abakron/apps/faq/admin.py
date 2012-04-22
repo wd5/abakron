@@ -10,7 +10,7 @@ from faq.forms import EntryAdminForm
 class EntryAdmin(admin.ModelAdmin):
     list_display = ('user', 'have_answer', 'created')
     list_select_related = True
-    fields = ('question_markdown', 'answer')
+    fields = ('question_markdown', 'visible', 'answer')
     readonly_fields = ('question_markdown',)
     form = EntryAdminForm
 

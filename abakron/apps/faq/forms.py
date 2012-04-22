@@ -20,4 +20,4 @@ class EntryAdminForm(forms.ModelForm):
 
     class Meta:
         model = Entry
-        fields = ('answer',)
+        fields = ('answer', 'visible')
