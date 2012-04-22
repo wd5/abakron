@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% load markup %}
+
+{% block title %}Ваши вопросы{% endblock %}
+
+{% block content %}
+<section class="faq">
+    {# TODO: move this text into flatpage content #}
+    <p>Здесь Вы можете спрашивать у нас любые вопросы касательно комикса,
+        его создания, ближайшего развития и всего такого прочего.
+        Вопрос будет показан на этой странице сразу же как на него будет дан ответ.
+        Если у Вас есть какой-то вопрос, который Вы хотели бы обсудить приватно,
+        то можете не стесняться и писать мне на <a href="mailto:devancheque@gmail.com">мой почтовый ящик</a>.</p>
+    <form action="." method="post">{% csrf_token %}
+        <div class="form-row">{{ form.question }}</div>
+        <div class="form-row"><input type="submit" value="Спросить" disabled="disabled"></div>
+    </form>
+    <dl>
+        {% for entry in entries %}
+            <dt>{{ entry.question|markdown }}</dt>
+            <dd>{{ entry.answer|markdown }}</dd>
+        {% endfor %}
+    </dl>
+</section>
+{% endblock %}

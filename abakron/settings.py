@@ -126,6 +126,7 @@ INSTALLED_APPS = (
     # Project applications
     'comics',
     'blogs',
+    'faq',
 
 )
 

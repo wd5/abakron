@@ -44,5 +44,29 @@ A.controllers.ComicsNavigation = Spine.Controller.sub({
     }
 
 });
-
 new A.controllers.ComicsNavigation();
+
+A.controllers.FaqForm = Spine.Controller.sub({
+    el: $('section.faq form'),
+
+    events: {
+        'keyup textarea': 'change',
+        'submit': 'submit'
+    },
+
+    change: function(event) {
+        var target = $(event.target);
+        if (target.val().length == 0) {
+            this.el.find('input[type="submit"]').attr('disabled', 'disabled');
+        } else {
+            this.el.find('input[type="submit"]').removeAttr('disabled');
+        }
+    },
+
+    submit: function(event) {
+        this.el.find('input[type="submit"]').attr('disabled', 'disabled');
+    }
+
+});
+
+new A.controllers.FaqForm();

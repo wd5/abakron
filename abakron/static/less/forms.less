@@ -1,0 +1,32 @@
+input, textarea, select {
+    display: inline-block;
+    width: 160px;
+    padding: 4px;
+    margin-bottom: 9px;
+    font-size: 12px;
+    line-height: @baseLineHeight;
+    color: #ffffcc;
+    background: #5B3B23 url(/static/images/footer-background.png) repeat-x;
+    border-bottom-color: #B09A64;
+    border-top-color: #3B291A;
+    border-left-color: #442F1D;
+    border-right-color: #442F1D;
+    .border-radius(3px);
+
+    .placeholder(#ffffcc);
+}
+
+textarea {
+    background: #5B3B23;
+    height: @baseLineHeight*4;
+    width: 670px;
+    padding: 8px;
+}
+
+
+input[type="submit"], input[type="button"] {
+    border: 2px solid #3B291A;
+    border-top-color: #B09A64;
+    border-bottom-color: #3B291A;
+    .border-radius(0);
+}
