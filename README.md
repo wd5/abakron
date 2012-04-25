@@ -1,6 +1,6 @@
 # Абакрон
 
-Web-комикс от [D.Van](http://dvan.helloacy.ru), создателя [HelloACY](http://helloacy.ru) и [Pineapple of Peak](http://pineapplepeak.blogspot.com).
+Web-комикс от [D.Van](http://dvan.helloacy.ru), создателя [HelloACY](http://helloacy.ru) и [Pineapple Peak](http://pineapplepeak.blogspot.com).
 
 Так как открытие сайта сильно затянулось по техническим причинам, было принято стратегическое решение начать делать его с нуля.
 
