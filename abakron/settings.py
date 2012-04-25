@@ -87,6 +87,16 @@ TEMPLATE_LOADERS = (
     )),
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'django.contrib.messages.context_processors.messages',
+    'social_auth.context_processors.social_auth_backends',
+)
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -121,6 +131,7 @@ INSTALLED_APPS = (
     'less',
     'djangorestframework',
     'jsroutes',
+    'social_auth',
     'utils',
 
     # Project applications
@@ -129,6 +140,24 @@ INSTALLED_APPS = (
     'faq',
 
 )
+
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.twitter.TwitterBackend',
+    'social_auth.backends.facebook.FacebookBackend',
+    'social_auth.backends.google.GoogleOAuth2Backend',
+    'social_auth.backends.contrib.livejournal.LiveJournalBackend',
+    'social_auth.backends.contrib.vkontakte.VkontakteBackend',
+    'social_auth.backends.OpenIDBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+# TODO: maybe reverse_lazy will work here?
+LOGIN_URL = '/auth/login/'
+LOGIN_REDIRECT_URL = '/auth/success/'
+LOGIN_ERROR_URL = '/auth/error/'
+
+SOCIAL_AUTH_COMPLETE_URL_NAME  = 'socialauth_complete'
+SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -185,7 +214,6 @@ JSROUTES_EXCLUDE_PATTERNS = (
     r'\^/admin(.*)',
     r'\^/api/urls/'
 )
-
 
 try:
     from settings_local import *

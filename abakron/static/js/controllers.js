@@ -3,6 +3,23 @@
 var A = A || {};
 A.controllers = {};
 
+A.controllers.AuthController = Spine.Controller.sub({
+    el: $('*[data-auth="required"]'),
+
+    events: {
+        'click': 'click'
+    },
+
+    click: function(event) {
+        var target = $(event.target);
+        console.log(target);
+    }
+
+});
+
+/**
+ * Comics inner navigation
+ */
 A.controllers.ComicsNavigation = Spine.Controller.sub({
     el: $('ul.navigation-inner'),
 
@@ -46,6 +63,9 @@ A.controllers.ComicsNavigation = Spine.Controller.sub({
 });
 new A.controllers.ComicsNavigation();
 
+/**
+ * FAQ form submit
+ */
 A.controllers.FaqForm = Spine.Controller.sub({
     el: $('section.faq form'),
 

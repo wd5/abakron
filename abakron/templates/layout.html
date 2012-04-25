@@ -16,6 +16,7 @@
                 '{% static 'js/libs/spine/ajax.js' %}',
                 '{% static 'js/models.js' %}',
                 '{% static 'js/controllers.js' %}',
+                '{% static 'js/libs/bootstrap-modal.js' %}'
             ]);
         </script>
         {% block head %}{% endblock %}
@@ -36,8 +37,8 @@
                     </ul>
 
                     <ul id="navigation-resources">
-                        <li><a href="{% url feed %}"><i class="icon-rss"></i></a></li>
-                        <li><a href="#"><i class="icon-twitter"></i></a></li>
+                        <li><a href="{% url feed %}"><i class="icon-rss-resource"></i></a></li>
+                        <li><a href="#"><i class="icon-twitter-resource"></i></a></li>
                     </ul>
                     
                 </nav>
@@ -50,8 +51,30 @@
             <footer>
                 <p>«<strong>Абакрон</strong>» © {% now 'Y' %} Комикс: <a href="http://dvan.helloacy.ru">Иван «D.Van» Хорошев</a>; Сайт и поддержка: <a href="http://svartalf.info">SvartalF</a>.</p>
             </footer>
-
         </div>
+
+        {% comment %}
+        <div id="modal-authentication" class="modal">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">×</button>
+                <h3>Вход на сайт</h3>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    {% for backend in social_auth.backends %}
+                        <li>
+                            <a href="{% url socialauth_begin backend %}">
+                                <i class="icon-left icon-social"></i>{{ backend|capfirst }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn">Закрыть</a>
+            </div>
+        </div>
+        {% endcomment %}
 
     </body>
 </html>
