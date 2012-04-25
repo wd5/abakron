@@ -17,9 +17,12 @@ class StaticFileNode(template.Node):
         else:
             # select server by index based on the hash of the url
             idx = self._hash(filename) % len(settings.STATIC_DOMAINS)
-            self._filename = urljoin(settings.STATIC_DOMAINS[idx], filename)
-            # Appending latest modification time
-            self._filename += '?v=%d' % int(os.stat(os.path.join(settings.STATIC_ROOT, filename)).st_mtime)
+
+            bits = list(os.path.splitext(filename))
+            # add a last modification time to the file URL
+            bits.insert(1, '.%d' % int(os.stat(os.path.join(settings.STATIC_ROOT, filename)).st_mtime))
+
+            self._filename = urljoin(settings.STATIC_DOMAINS[idx], ''.join(bits))
 
     @staticmethod
     def _hash(str):
