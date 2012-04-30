@@ -2,14 +2,7 @@
 
 {% load markup date %}
 
-{% block title %}
-    {% if year and month %}
-        {{ date|ru_strftime_plain:'%B %Y'|capfirst }} года /
-    {% elif year and not month %}
-        {{ year }} год /
-    {% endif %}
-    Блог {{ block.super }}
-{% endblock %}
+{% block title %}Блог {{ block.super }}{% endblock %}
 
 {% block content %}
 <section class="blog index">
