@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% load markup %}
+
+{% block title %}{{ flatpage.title }}{% endblock %}
+
+{% block content %}
+    <section class="page">
+        <h1>{{ flatpage.title }}</h1>
+        {{ flatpage.content|markdown }}
+    </section>
+{% endblock content %}
