@@ -63,6 +63,68 @@ A.controllers.ComicsNavigation = Spine.Controller.sub({
 });
 new A.controllers.ComicsNavigation();
 
+
+A.controllers.CommentList = Spine.Controller.sub({
+
+    el: $('section.comments'),
+
+    events: {
+        'click a.comment-reply': 'reply',
+        'click a.comment-cancel': 'cancel',
+        'keyup textarea': 'keyup',
+        'submit form': 'submit'
+    },
+
+    reply: function(event) {
+        event.preventDefault();
+        var target = $(event.target);
+        var container = target.parents('li');
+        var form = $('#comment-form');
+
+        this.el.find('a.comment-reply').show();
+        form.appendTo(container);
+        form.find('input[name="parent"]').val(container.data('id'));
+        target.hide();
+    },
+
+    cancel: function(event) {
+        event.preventDefault();
+        $(event.target).parents('li').find('a.comment-reply').show();
+        var form = $('#comment-form');
+        form.appendTo(this.el);
+        form.find('input[name="parent"]').removeAttr('value');
+    },
+
+    keyup: function(event) {
+        /*
+        var target = $(event.target);
+        if (target.val().length == 0) {
+            this.el.find('#comment-form input[type="submit"]').attr('disabled', 'disabled');
+        } else {
+            this.el.find('#comment-form input[type="submit"]').removeAttr('disabled');
+        }
+        */
+    },
+
+    submit: function(event) {
+        event.preventDefault();
+        var form = $(event.target);
+        $.post(form.attr('action'), {
+            parent: form.find('input[name="parent"]').val(),
+            content: form.find('textarea').val()
+        }, function(response) {
+            console.log(response);
+        });
+        console.log('submit');
+        /*
+        this.el.find('#comment-form input[type="submit"]').attr('disabled', 'disabled');
+        */
+    }
+
+});
+new A.controllers.CommentList();
+
+
 /**
  * FAQ form submit
  */

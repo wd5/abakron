@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     url(r'^feed/$', AggregatedFeed(), name='feed'),
     (r'^api/urls/', include('jsroutes.urls')),
     (r'^api/comics/', include('comics.api')),
+    (r'^api/comments/', include('comments.api')),
 
     (r'^', include('comics.urls')),
 )

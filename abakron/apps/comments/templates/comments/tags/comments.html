@@ -1,0 +1,29 @@
+{% load markup pytils_dt %}
+
+<section class="comments">
+    <ul class="comments-list">
+        {% for comment in comments %}
+            <li class="comment-level-{% if comment.depth <= 3 %}{{ comment.depth }}{% else %}3{% endif %}" data-id="{{ comment.pk }}">
+                <div class="meta">
+                    <a href="#">{{ comment.user.username }}</a>
+                    написал
+                    <time datetime="{{ comment.created|date:'c' }}" pubdate>{{ comment.created|ru_strftime:'%d %B в %H:%M' }}</time>
+                </div>
+                <div class="content">{{ comment.content|markdown }}</div>
+                <a href="#" class="comment-reply">Ответить</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <form action="{{ action_url }}" method="post" id="comment-form">{% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+        {{ form.parent }}
+        <div class="form-row">
+            {{ form.content }}
+        </div>
+        <div class="form-row">
+            <input type="submit" value="Отправить">
+            <a href="#" class="comment-cancel">Я передумал</a>
+        </div>
+    </form>
+</section>

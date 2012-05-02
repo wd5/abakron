@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% load markup %}
+{% load markup comments_tags %}
 
 {% block title %}{{ post.title }} / Блог {{ block.super }}{% endblock %}
 
@@ -9,4 +9,7 @@
     <h1>{{ post.title }}</h1>
     <div class="content">{{ post.content|markdown }}</div>
 </section>
+
+{% comments post %}
+
 {% endblock %}

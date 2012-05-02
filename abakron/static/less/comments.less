@@ -1,0 +1,37 @@
+@commentPaddingLevel: 30px;
+
+section.comments {
+    background: #ffffff url(/static/images/comments-list-background.png) repeat-x center top;
+    padding: 40px;
+
+    a {
+        color: #0066cc;
+    }
+
+}
+
+ul.comments-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    & > li {
+        color: #000000;
+
+        &.comment-level-1 { margin-left: @commentPaddingLevel*1; }
+        &.comment-level-2 { margin-left: @commentPaddingLevel*2; }
+        &.comment-level-3 { margin-left: @commentPaddingLevel*3; }
+
+        .meta {
+            color: #996600;
+
+            a {
+                font-size: 14px;
+            }
+        }
+
+        .content {
+            list-height: 14px;
+        }
+    }
+}
