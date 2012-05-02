@@ -4,9 +4,10 @@ import datetime
 from django.conf.urls import patterns, url
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponseRedirect
 from djangorestframework import status
 from djangorestframework.resources import ModelResource
-from djangorestframework.response import ErrorResponse
+from djangorestframework.response import ErrorResponse, Response
 from djangorestframework.views import View
 
 from comments.models import Comment
@@ -43,7 +44,7 @@ class ListView(View):
         ct = ContentType.objects.get_for_model(MODELS_MAPPINGS[kwargs['model']])
 
         try:
-            ct.get_object_for_this_type(pk=kwargs['object_id'])
+            obj = ct.get_object_for_this_type(pk=kwargs['object_id'])
         except ObjectDoesNotExist:
             raise ErrorResponse(status.HTTP_404_NOT_FOUND)
 
@@ -61,9 +62,20 @@ class ListView(View):
 
         parent = form.cleaned_data['parent']
         if parent:
-            parent.add_child(**data)
+            instance = parent.add_child(**data)
         else:
-            Comment.add_root(**data)
+            instance = Comment.add_root(**data)
+
+        response = {
+            'id': instance.pk,
+            'content': instance.content,
+            'created': instance.created,
+            'depth': instance.depth,
+        }
+        return response
+        if request.is_ajax():
+            return Response(status.HTTP_201_CREATED)
+        return HttpResponseRedirect(obj.get_absolute_url())
 
 class CommentResource(ModelResource):
 

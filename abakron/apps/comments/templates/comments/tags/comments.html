@@ -3,7 +3,7 @@
 <section class="comments">
     <ul class="comments-list">
         {% for comment in comments %}
-            <li class="comment-level-{% if comment.depth <= 3 %}{{ comment.depth }}{% else %}3{% endif %}" data-id="{{ comment.pk }}">
+            <li class="comment-level-{% if comment.depth <= 3 %}{{ comment.depth }}{% else %}3{% endif %}" data-id="{{ comment.pk }}" data-tree="{{ comment.tree_id }}" data-level="{{ comment.depth }}">
                 <div class="meta">
                     <a href="#">{{ comment.user.username }}</a>
                     написал

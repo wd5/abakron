@@ -41,3 +41,12 @@ def comments(parser, token):
     bits = token.split_contents()
 
     return CommentsNode(bits[1])
+
+
+@register.inclusion_tag('comments/tags/comments_count.html')
+def comments_count(obj):
+    ct = ContentType.objects.get_for_model(obj)
+
+    return {
+        'count': Comment.objects.filter(content_type=ct, object_id=obj.pk, is_deleted=False).count(),
+    }

@@ -79,6 +79,7 @@ A.controllers.CommentList = Spine.Controller.sub({
         event.preventDefault();
         var target = $(event.target);
         var container = target.parents('li');
+        console.log(container);
         var form = $('#comment-form');
 
         this.el.find('a.comment-reply').show();
@@ -115,10 +116,6 @@ A.controllers.CommentList = Spine.Controller.sub({
         }, function(response) {
             console.log(response);
         });
-        console.log('submit');
-        /*
-        this.el.find('#comment-form input[type="submit"]').attr('disabled', 'disabled');
-        */
     }
 
 });

@@ -1,0 +1,4 @@
+{% load pytils_numeral %}
+<div class="comments-count">
+    <a href="{{ obj.get_absolute_url }}">{{ count|get_plural:'комментарий,комментария,комментариев' }}</a>
+</div>
