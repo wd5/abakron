@@ -8,6 +8,36 @@ section.comments {
         color: #0066cc;
     }
 
+    form {
+        margin-left: 30px;
+        margin-top: 20px;
+        padding-top: 20px;
+        padding-bottom: 10px;
+        border-top: 1px solid #999999;
+        width: 600px;
+        .clearfix();
+
+        textarea {
+            background: #ffffcc;
+            width: 580px;
+            max-width: 580px;
+            max-height: 280px;
+            color: #000000;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .form-row input[type="submit"] {
+            float: right;
+        }
+
+        .comment-cancel {
+            display: none;
+        }
+
+    }
+
 }
 
 ul.comments-list {
@@ -18,9 +48,27 @@ ul.comments-list {
     & > li {
         color: #000000;
 
-        &.comment-level-1 { margin-left: @commentPaddingLevel*1; }
-        &.comment-level-2 { margin-left: @commentPaddingLevel*2; }
-        &.comment-level-3 { margin-left: @commentPaddingLevel*3; }
+        &.comment-level-1 {
+            margin-left: @commentPaddingLevel*1;
+
+            form {
+                width: 540px;
+            }
+        }
+        &.comment-level-2 {
+            margin-left: @commentPaddingLevel*2;
+
+            form {
+                width: 510px;
+            }
+        }
+        &.comment-level-3 {
+            margin-left: @commentPaddingLevel*3;
+
+            form {
+                width: 480px;
+            }
+        }
 
         .meta {
             color: #996600;

@@ -97,23 +97,28 @@ A.controllers.CommentList = Spine.Controller.sub({
     },
 
     keyup: function(event) {
-        /*
-        var target = $(event.target);
-        if (target.val().length == 0) {
-            this.el.find('#comment-form input[type="submit"]').attr('disabled', 'disabled');
-        } else {
-            this.el.find('#comment-form input[type="submit"]').removeAttr('disabled');
-        }
-        */
+        // TODO: disable submit button if there is no comment text
     },
 
+    /**
+     * Submit form via AJAX
+     */
     submit: function(event) {
         event.preventDefault();
+        this.update();
+        return;
+
         var form = $(event.target);
         $.post(form.attr('action'), {
             parent: form.find('input[name="parent"]').val(),
             content: form.find('textarea').val()
         }, function(response) {
+            console.log(response);
+        });
+    },
+
+    update: function() {
+        $.getJSON(django_url_reverse('api.comments', ['blog', 1]), function(response) {
             console.log(response);
         });
     }
