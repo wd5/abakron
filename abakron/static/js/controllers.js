@@ -105,8 +105,6 @@ A.controllers.CommentList = Spine.Controller.sub({
      */
     submit: function(event) {
         event.preventDefault();
-        this.update();
-        return;
 
         var form = $(event.target);
         $.post(form.attr('action'), {

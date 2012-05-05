@@ -72,7 +72,7 @@ class ListView(View):
             'created': instance.created,
             'depth': instance.depth,
         }
-        return response
+
         if request.is_ajax():
             return Response(status.HTTP_201_CREATED)
         return HttpResponseRedirect(obj.get_absolute_url())
