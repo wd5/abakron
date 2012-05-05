@@ -1,4 +1,4 @@
-{% load markup pytils_dt %}
+{% load markup pytils_dt template %}
 
 <section class="comments" id="comments" data-url="{{ action_url }}">
     <ul class="comments-list">
@@ -27,16 +27,16 @@
         </div>
     </form>
 </section>
-{% comment %}
-<script type="text/html">
-    <li class="comment-level-{% templatetag openvariable %} depth }}" data-id="{% templatetag openvariable %} id }}">
+{% raw %}
+<script type="text/html" id="comment">
+    <li class="comment-level-{{ depth }}" data-id="{{ id }}">
         <div class="meta">
-            <a href="#">{% templatetag openvariable %} user.username }}</a>
+            <a href="#">{{ user.username }}</a>
             написал
-            <time datetime="{{ created }}" pubdate>{{ comment.created|ru_strftime:'%d %B в %H:%M' }}</time>
+            <time datetime="{{ created }}" pubdate>{{ created_readable }}</time>
         </div>
-        <div class="content">{% templatetag openvariable %} content }}</div>
+        <div class="content">{{& content }}</div>
         <a href="#" class="comment-reply">Ответить</a>
     </li>
 </script>
-{% endcomment %}
+{% endraw %}

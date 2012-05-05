@@ -105,19 +105,27 @@ A.controllers.CommentList = Spine.Controller.sub({
      */
     submit: function(event) {
         event.preventDefault();
-
-        var form = $(event.target);
+        var form = $(event.target),
+            self = this;
         $.post(form.attr('action'), {
             parent: form.find('input[name="parent"]').val(),
             content: form.find('textarea').val()
         }, function(response) {
-            console.log(response);
+            self.update();
         });
     },
 
     update: function() {
-        $.getJSON(django_url_reverse('api.comments', ['blog', 1]), function(response) {
-            console.log(response);
+        var container = $('section.comments');
+        var list = container.find('ul.comments-list');
+        $.getJSON(container.data('url'), function(response) {
+            list.html('');
+            for (var i=0; i<response.length; i++) {
+                var obj = response[i];
+                if (obj.depth > 3)
+                    obj.depth = 3;
+                list.append(ich.comment(obj));
+            }
         });
     }
 

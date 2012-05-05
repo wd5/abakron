@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 import datetime
 
 from django.conf.urls import patterns, url
@@ -9,11 +10,12 @@ from djangorestframework import status
 from djangorestframework.resources import ModelResource
 from djangorestframework.response import ErrorResponse, Response
 from djangorestframework.views import View
+from pytils.templatetags.pytils_dt import ru_strftime
+import markdown
 
 from comments.models import Comment
 from comments.forms import CommentForm
 from comments.settings import MODELS_MAPPINGS
-
 
 class ListView(View):
     fields = ('id',)
@@ -27,12 +29,13 @@ class ListView(View):
             raise ErrorResponse(status.HTTP_404_NOT_FOUND)
 
         queryset = Comment.objects.filter(content_type=ct, object_id=kwargs['object_id']).select_related('user') \
-            .order_by('created')
+            .order_by('tree_id', 'created')
 
         return [{
             'id': x.id,
             'created': x.created,
-            'content': x.content,
+            'created_readable': ru_strftime(x.created, u'%d %B в %H:%M'),
+            'content': markdown.markdown(x.content),
             'depth': x.depth,
             'user': {
                 'id': x.user.id,
