@@ -136,6 +136,7 @@ INSTALLED_APPS = (
     'jsroutes',
     'social_auth',
     'treebeard',
+    'easy_thumbnails',
     'utils',
 
     # Project applications
@@ -143,7 +144,7 @@ INSTALLED_APPS = (
     'blogs',
     'faq',
     'comments',
-
+    'profiles',
 )
 
 AUTHENTICATION_BACKENDS = (
