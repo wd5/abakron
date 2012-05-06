@@ -44,6 +44,9 @@ class ListView(View):
         } for x in queryset]
 
     def post(self, request, *args, **kwargs):
+        if not request.user.is_authenticated():
+            return Response(status.HTTP_401_UNAUTHORIZED)
+
         ct = ContentType.objects.get_for_model(MODELS_MAPPINGS[kwargs['model']])
 
         try:
@@ -68,13 +71,6 @@ class ListView(View):
             instance = parent.add_child(**data)
         else:
             instance = Comment.add_root(**data)
-
-        response = {
-            'id': instance.pk,
-            'content': instance.content,
-            'created': instance.created,
-            'depth': instance.depth,
-        }
 
         if request.is_ajax():
             return Response(status.HTTP_201_CREATED)
