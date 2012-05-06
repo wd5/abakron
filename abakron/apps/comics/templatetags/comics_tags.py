@@ -25,7 +25,7 @@ def comics_navigation(obj, classes=None):
     if isinstance(obj, Comics):
         current_comics = obj
         current_chapter = obj.chapter
-        comics = list(obj.chapter.comics.all().order_by('position'))
+        comics = list(obj.chapter.comics.all().order_by('position').select_related('chapter'))
 
         # Left position
         if obj.position == 1:
@@ -58,7 +58,7 @@ def comics_navigation(obj, classes=None):
     else:
         current_comics = None
         current_chapter = obj
-        comics = list(obj.comics.all().order_by('position'))
+        comics = list(obj.comics.all().order_by('position').select_related('chapter'))
 
         try:
             left_chapter = Chapter.objects.filter(pk__lt=obj.pk).order_by('-pk')[0]

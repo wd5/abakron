@@ -14,7 +14,7 @@ def index(request):
         post = None
 
     context = {
-        'obj': Comics.objects.latest('created'),
+        'obj': Comics.objects.select_related('chapter').latest('created'),
         'post': post,
     }
 
