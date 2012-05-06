@@ -27,7 +27,7 @@ class CommentsNode(template.Node):
 
         template_context = {
             'request': context['request'],
-            'comments': Comment.objects.filter(content_type=content_type, object_id=obj.pk).order_by('tree_id', 'created'),
+            'comments': Comment.objects.filter(content_type=content_type, object_id=obj.pk).order_by('tree_id', 'created').select_related('user'),
             'form': form,
             'action_url': reverse('api.comments', args=(self.reverse_models_mappings[content_type.model_class()], obj.pk)),
         }

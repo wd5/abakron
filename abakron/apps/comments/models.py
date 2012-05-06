@@ -15,7 +15,7 @@ class Comment(NS_Node):
     user = models.ForeignKey(User)
     content = models.TextField()
     is_deleted = models.BooleanField(default=False, db_index=True)
-    created = models.DateTimeField()
+    created = models.DateTimeField(db_index=True)
 
     node_order_by = ('created',)
 
