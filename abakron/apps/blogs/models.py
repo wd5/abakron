@@ -10,7 +10,7 @@ class Post(models.Model):
     slug = models.SlugField(unique=True)
     content = models.TextField()
     visible = models.BooleanField(default=False)
-    created = models.DateTimeField()
+    created = models.DateTimeField(db_index=True)
 
     class Meta:
         db_table = u'blog_posts'
