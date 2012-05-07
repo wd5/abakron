@@ -6,7 +6,7 @@
             <div class="navigation-toc-chapter">
                 <select name="chapter">
                     {% for chapter in chapters %}
-                        <option value="{{ chapter.get_absolute_url }}" data-id="{{ chapter.id }}"{% if chapter == current_chapter %}selected="selected"{% endif %}>{{ chapter.title }}</option>
+                        <option value="{{ chapter.get_absolute_url }}" data-id="{{ chapter.id }}"{% if chapter == current_chapter %} selected="selected"{% endif %}>{{ chapter.title }}</option>
                     {% endfor %}
                 </select>
             </div>
